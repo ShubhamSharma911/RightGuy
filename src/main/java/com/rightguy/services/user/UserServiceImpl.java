@@ -13,6 +13,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
+
         this.userRepository = userRepository;
     }
 
@@ -26,21 +27,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> getUserById(Long id) {
+
         return userRepository.findById(id);
-    }
-
-    @Override
-    public User updateUser(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
     }
 
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
 }

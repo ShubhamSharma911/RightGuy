@@ -9,7 +9,5 @@ public interface UserService {
 
     User createUser(User user);
     Optional<User> getUserById(Long id);
-    User updateUser(User user);
-    void deleteUser(Long id);
     List<User> getAllUsers();
 }
