@@ -1,4 +1,4 @@
-package com.rightguy.services;
+package com.rightguy.services.user;
 
 import com.rightguy.model.User;
 

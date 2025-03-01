@@ -1,6 +1,8 @@
-package com.rightguy.services;
+package com.rightguy.services.user;
 
+import com.rightguy.model.Job;
 import com.rightguy.model.User;
+import com.rightguy.repositories.JobRepository;
 import com.rightguy.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-        if(userRepository.existsByEmail(user.getEmail())){
+        if (userRepository.existsByEmail(user.getEmail())) {
             throw new IllegalArgumentException("Email address already in use");
         }
         return userRepository.save(user);
@@ -35,5 +37,4 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
 }

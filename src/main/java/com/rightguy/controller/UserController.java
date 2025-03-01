@@ -2,9 +2,9 @@ package com.rightguy.controller;
 
 
 import com.rightguy.dtos.UserRequestDto;
-import com.rightguy.enums.Specialization;
+import com.rightguy.enums.UserType;
 import com.rightguy.model.User;
-import com.rightguy.services.UserService;
+import com.rightguy.services.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,19 +22,21 @@ public class UserController {
         this.userService = userService;
     }
 
+
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody @Valid UserRequestDto userRequestDto) {
-        User user = User.builder().name(userRequestDto.getName())
+        User user = User.builder()
+                .name(userRequestDto.getName())
                 .email(userRequestDto.getEmail())
                 .mobileNumber(userRequestDto.getMobileNumber())
                 .address(userRequestDto.getAddress())
-                .specialization(Specialization.valueOf(userRequestDto.getSpecialization().toUpperCase()))
-                .password(userRequestDto.getPassword())
+                .password(userRequestDto.getPassword()).userType(UserType.valueOf(userRequestDto.getUserType().toUpperCase()))
                 .build();
 
         User createdUser = userService.createUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable long id) {

@@ -1,4 +1,4 @@
-package com.rightguy.services;
+package com.rightguy.services.bid;
 
 import com.rightguy.model.Bid;
 

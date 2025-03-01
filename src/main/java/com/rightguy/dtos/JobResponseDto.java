@@ -1,27 +1,14 @@
-package com.rightguy.model;
+package com.rightguy.dtos;
 
-import jakarta.persistence.*;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-@Entity
-public class Job {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class JobResponseDto {
     private Long id;
-
-    @Column(nullable = false)
     private String title;
-
-    @Column(length = 2000)
     private String description;
-
-    @Column(nullable = false)
     private LocalDateTime postedDate;
-
-    @ManyToOne
-    @JoinColumn(name = "requester_id", nullable = false)
-    private User requester;
+    private Long requesterId;
+    private String status;
 
     public Long getId() {
         return id;
@@ -55,12 +42,19 @@ public class Job {
         this.postedDate = postedDate;
     }
 
-    public User getRequester() {
-        return requester;
+    public Long getRequesterId() {
+        return requesterId;
     }
 
-    public void setRequester(User requester) {
-        this.requester = requester;
+    public void setRequesterId(Long requesterId) {
+        this.requesterId = requesterId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
-
