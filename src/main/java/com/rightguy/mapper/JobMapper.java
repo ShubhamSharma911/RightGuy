@@ -1,5 +1,6 @@
 package com.rightguy.mapper;
 
+import com.rightguy.dtos.JobRequestDto;
 import com.rightguy.dtos.JobResponseDto;
 import com.rightguy.model.Job;
 
@@ -14,5 +15,13 @@ public class JobMapper {
         dto.setPostedDate(job.getPostedDate());
         dto.setRequesterId(job.getRequester().getId());
         return dto;
+    }
+
+    public static Job mapToEntity(JobRequestDto dto) {
+        Job job = new Job();
+        job.setTitle(dto.getTitle());
+        job.setDescription(dto.getDescription());
+        job.setPostedDate(java.time.LocalDateTime.now());
+        return job;
     }
 }
