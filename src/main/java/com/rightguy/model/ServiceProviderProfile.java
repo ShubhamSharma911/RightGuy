@@ -5,14 +5,15 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "Service_Provider_Profile")
 public class ServiceProviderProfile {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
     @ManyToMany
@@ -21,7 +22,29 @@ public class ServiceProviderProfile {
           joinColumns = @JoinColumn(name = "provider_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id")
     )
-    private Set<Service> services;
+    private Set<Services> services;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Services> getServices() {
+        return services;
+    }
+
+    public void setServices(Set<Services> services) {
+        this.services = services;
+    }
 }

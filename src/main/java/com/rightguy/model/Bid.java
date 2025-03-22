@@ -27,5 +27,4 @@ public class Bid {
     @ManyToOne
     @JoinColumn(name = "provider_id", nullable = false)
     private User provider;
-
 }
